@@ -14,7 +14,7 @@ local screen_gui = Instance.new("ScreenGui")
 screen_gui.IgnoreGuiInset = false
 screen_gui.ResetOnSpawn = true
 screen_gui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
-screen_gui.Parent = workspace
+screen_gui.Parent = game:GetService("CoreGui")
 
 local frame = Instance.new("Frame")
 frame.AnchorPoint = Vector2.new(0, 1)
