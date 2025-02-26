@@ -203,7 +203,7 @@ gender.Size = UDim2.new(0.862, 0,0.08, 0)
 gender.Visible = true
 gender.Name = "Gender"
 gender.Parent = frame
-local function updatePhotoState(ghostPart)
+local function updateGenderState(ghostPart)
 	task.spawn(function()
 		repeat task.wait() until ghostPart:GetAttribute("Gender") ~= nil
 		local hunting = ghostPart:GetAttribute("Gender") or false
@@ -242,13 +242,14 @@ local function updatePhotoState(ghostPart)
 	task.spawn(function()
 		repeat task.wait() until ghostPart:GetAttribute("PhotoRewardAvailable") ~= nil
 		local hunting = ghostPart:GetAttribute("PhotoRewardAvailable") or false
+		photo_reward.Text = "RECOMPENSA FOTO: NÃO"
 		if hunting == true then
-			photo_reward.Text = "RECOMPENSA FOTO: "..hunting
+			photo_reward.Text = "RECOMPENSA FOTO: SIM"
 		end
 		ghostPart:GetAttributeChangedSignal("PhotoRewardAvailable"):Connect(function()
 			local hunting = ghostPart:GetAttribute("PhotoRewardAvailable") or false
 			if hunting == true then
-				photo_reward.Text = "RECOMPENSA FOTO: "..hunting
+				photo_reward.Text = "RECOMPENSA FOTO: SIM"
 			end
 		end)
 	end)
@@ -312,6 +313,7 @@ local function updateLaserState(ghostPart)
 	task.spawn(function()
 		repeat task.wait() until ghostPart:GetAttribute("LaserVisible") ~= nil
 		local hunting = ghostPart:GetAttribute("LaserVisible") or false
+		laser_visible.Text = "VISÍVEL NO LASER: NÃO"
 		if hunting == true then
 			laser_visible.Text = "VISÍVEL NO LASER: SIM"
 		end
@@ -343,33 +345,42 @@ hunting.Size = UDim2.new(0.862, 0,0.08, 0)
 hunting.Visible = true
 hunting.Name = "Hunting"
 hunting.Parent = frame
-local function updateHuntingState(ghostPart)
+local function updateHuntingState(ghostPart, Highlight)
 	task.spawn(function()
 		repeat task.wait() until ghostPart:GetAttribute("Hunting") ~= nil
 		local hunting = ghostPart:GetAttribute("Hunting") or false
 		if hunting and hunting == true then
 			hunting.Text = "CAÇANDO: SIM"
 			hunting.TextColor3 = Color3.fromRGB(255, 0, 0)  -- Vermelho
+			Highlight.FillColor = Color3.fromRGB(255, 0, 0)
 		else
 			hunting.Text = "CAÇANDO: NÃO"
 			hunting.TextColor3 = Color3.fromRGB(0, 255, 0)  -- Verde
+			Highlight.FillColor = Color3.fromRGB(0, 255, 0)
 		end
 		ghostPart:GetAttributeChangedSignal("Hunting"):Connect(function()
 			local hunting = ghostPart:GetAttribute("Hunting") or false
 			if hunting and hunting == true then
 				hunting.Text = "CAÇANDO: SIM"
 				hunting.TextColor3 = Color3.fromRGB(255, 0, 0)  -- Vermelho
+				Highlight.FillColor = Color3.fromRGB(255, 0, 0)
 			else
 				hunting.Text = "CAÇANDO: NÃO"
 				hunting.TextColor3 = Color3.fromRGB(0, 255, 0)  -- Verde
+				Highlight.FillColor = Color3.fromRGB(0, 255, 0)
 			end
 		end)
 	end)
 end
+
+local Highlight = Instance.new("Highlight")
+Highlight.FillColor = Color3.fromRGB(0, 255, 0)
+Highlight.Parent = ghostPart
+
 updateAgeState(ghostPart)
 updateLaserState(ghostPart)
 updateModelState(ghostPart)
 updatePhotoState(ghostPart)
 updateCurrentState(ghostPart)
 updateFavoriteState(ghostPart)
-updateHuntingState(ghostPart)
+updateHuntingState(ghostPart, Highlight)
