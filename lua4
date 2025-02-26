@@ -349,8 +349,8 @@ local function updateHuntingState(ghostPart, Highlight)
 	task.spawn(function()
 		hunting.Text = "CAÇANDO: NÃO"
 		repeat task.wait() until ghostPart:GetAttribute("Hunting") ~= nil
-		local hunting = ghostPart:GetAttribute("Hunting") or false
-		if hunting and hunting == true then
+		local huntinga = ghostPart:GetAttribute("Hunting") or false
+		if huntinga and huntinga == true then
 			hunting.Text = "CAÇANDO: SIM"
 			hunting.TextColor3 = Color3.fromRGB(255, 0, 0)  -- Vermelho
 			Highlight.FillColor = Color3.fromRGB(255, 0, 0)
@@ -360,8 +360,8 @@ local function updateHuntingState(ghostPart, Highlight)
 			Highlight.FillColor = Color3.fromRGB(0, 255, 0)
 		end
 		ghostPart:GetAttributeChangedSignal("Hunting"):Connect(function()
-			local hunting = ghostPart:GetAttribute("Hunting") or false
-			if hunting and hunting == true then
+			local huntinga = ghostPart:GetAttribute("Hunting") or false
+			if huntinga and huntinga == true then
 				hunting.Text = "CAÇANDO: SIM"
 				hunting.TextColor3 = Color3.fromRGB(255, 0, 0)  -- Vermelho
 				Highlight.FillColor = Color3.fromRGB(255, 0, 0)
