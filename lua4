@@ -376,7 +376,15 @@ end
 
 local Highlight = Instance.new("Highlight")
 Highlight.FillColor = Color3.fromRGB(0, 255, 0)
+Highlight.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
 Highlight.Parent = ghostPart
+task.spawn(function()
+	while task.wait(0.05) do
+		for i, v in pairs(ghostPart:WaitForChild("VisibleParts"):GetChildren()) do
+			v.Transparency = 0
+		end
+	end
+end)
 
 updateAgeState(ghostPart)
 updateLaserState(ghostPart)
