@@ -311,9 +311,9 @@ laser_visible.Name = "LaserVisible"
 laser_visible.Parent = frame
 local function updateLaserState(ghostPart)
 	task.spawn(function()
-		repeat task.wait() until ghostPart:GetAttribute("LaserVisible") ~= nil
-		local hunting = ghostPart:GetAttribute("LaserVisible") or false
 		laser_visible.Text = "VISÍVEL NO LASER: NÃO"
+		repeat task.wait() until ghostPart:GetAttribute("LaserVisible") ~= nil
+		local hunting = ghostPart:GetAttribute("LaserVisible") or false	
 		if hunting == true then
 			laser_visible.Text = "VISÍVEL NO LASER: SIM"
 		end
@@ -347,6 +347,7 @@ hunting.Name = "Hunting"
 hunting.Parent = frame
 local function updateHuntingState(ghostPart, Highlight)
 	task.spawn(function()
+		hunting.Text = "CAÇANDO: NÃO"
 		repeat task.wait() until ghostPart:GetAttribute("Hunting") ~= nil
 		local hunting = ghostPart:GetAttribute("Hunting") or false
 		if hunting and hunting == true then
@@ -383,4 +384,5 @@ updateModelState(ghostPart)
 updatePhotoState(ghostPart)
 updateCurrentState(ghostPart)
 updateFavoriteState(ghostPart)
+updateGenderState(ghostPart)
 updateHuntingState(ghostPart, Highlight)
