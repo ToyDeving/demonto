@@ -97,6 +97,10 @@ age.Parent = frame
 local function updateAgeState(ghostPart)
 	task.spawn(function()
 		repeat task.wait() until ghostPart:GetAttribute("Age") ~= nil
+		local hunting = ghostPart:GetAttribute("Age") or false
+		if hunting then
+			age.Text = "IDADE: "..hunting
+		end
 		ghostPart:GetAttributeChangedSignal("Age"):Connect(function()
 			local hunting = ghostPart:GetAttribute("Age") or false
 			if hunting then
@@ -128,6 +132,10 @@ current_room.Parent = frame
 local function updateCurrentState(ghostPart)
 	task.spawn(function()
 		repeat task.wait() until ghostPart:GetAttribute("CurrentRoom") ~= nil
+		local hunting = ghostPart:GetAttribute("CurrentRoom") or false
+		if hunting then
+			current_room.Text = "QUARTO ATUAL: "..hunting
+		end
 		ghostPart:GetAttributeChangedSignal("CurrentRoom"):Connect(function()
 			local hunting = ghostPart:GetAttribute("CurrentRoom") or false
 			if hunting then
@@ -159,6 +167,10 @@ favorite_room.Parent = frame
 local function updateFavoriteState(ghostPart)
 	task.spawn(function()
 		repeat task.wait() until ghostPart:GetAttribute("FavoriteRoom") ~= nil
+		local hunting = ghostPart:GetAttribute("FavoriteRoom") or false
+		if hunting then
+			favorite_room.Text = "QUARTO FAVORITO: "..hunting
+		end
 		ghostPart:GetAttributeChangedSignal("FavoriteRoom"):Connect(function()
 			local hunting = ghostPart:GetAttribute("FavoriteRoom") or false
 			if hunting then
@@ -190,6 +202,10 @@ gender.Parent = frame
 local function updatePhotoState(ghostPart)
 	task.spawn(function()
 		repeat task.wait() until ghostPart:GetAttribute("Gender") ~= nil
+		local hunting = ghostPart:GetAttribute("Gender") or false
+		if hunting then
+			gender.Text = "GÊNERO: "..hunting
+		end
 		ghostPart:GetAttributeChangedSignal("Gender"):Connect(function()
 			local hunting = ghostPart:GetAttribute("Gender") or false
 			if hunting then
@@ -221,6 +237,10 @@ photo_reward.Parent = frame
 local function updatePhotoState(ghostPart)
 	task.spawn(function()
 		repeat task.wait() until ghostPart:GetAttribute("PhotoRewardAvailable") ~= nil
+		local hunting = ghostPart:GetAttribute("PhotoRewardAvailable") or false
+		if hunting == true then
+			photo_reward.Text = "RECOMPENSA FOTO: "..hunting
+		end
 		ghostPart:GetAttributeChangedSignal("PhotoRewardAvailable"):Connect(function()
 			local hunting = ghostPart:GetAttribute("PhotoRewardAvailable") or false
 			if hunting == true then
@@ -252,6 +272,10 @@ visual_model.Parent = frame
 local function updateModelState(ghostPart)
 	task.spawn(function()
 		repeat task.wait() until ghostPart:GetAttribute("VisualModel") ~= nil
+		local hunting = ghostPart:GetAttribute("VisualModel") or false
+		if hunting then
+			visual_model.Text = "APARÊNCIA: "..hunting
+		end
 		ghostPart:GetAttributeChangedSignal("VisualModel"):Connect(function()
 			local hunting = ghostPart:GetAttribute("VisualModel") or false
 			if hunting then
@@ -283,6 +307,10 @@ laser_visible.Parent = frame
 local function updateLaserState(ghostPart)
 	task.spawn(function()
 		repeat task.wait() until ghostPart:GetAttribute("LaserVisible") ~= nil
+		local hunting = ghostPart:GetAttribute("LaserVisible") or false
+		if hunting == true then
+			laser_visible.Text = "VISÍVEL NO LASER: SIM"
+		end
 		ghostPart:GetAttributeChangedSignal("LaserVisible"):Connect(function()
 			local hunting = ghostPart:GetAttribute("LaserVisible") or false
 			if hunting == true then
@@ -314,6 +342,14 @@ hunting.Parent = frame
 local function updateHuntingState(ghostPart)
 	task.spawn(function()
 		repeat task.wait() until ghostPart:GetAttribute("Hunting") ~= nil
+		local hunting = ghostPart:GetAttribute("Hunting") or false
+		if hunting and hunting == true then
+			hunting.Text = "CAÇANDO: SIM"
+			hunting.TextColor3 = Color3.fromRGB(255, 0, 0)  -- Vermelho
+		else
+			hunting.Text = "CAÇANDO: NÃO"
+			hunting.TextColor3 = Color3.fromRGB(0, 255, 0)  -- Verde
+		end
 		ghostPart:GetAttributeChangedSignal("Hunting"):Connect(function()
 			local hunting = ghostPart:GetAttribute("Hunting") or false
 			if hunting and hunting == true then
